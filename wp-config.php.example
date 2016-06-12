@@ -1,0 +1,164 @@
+<?php
+/**
+ * The base configurations of the WordPress.
+ *
+ * This file has the following configurations: MySQL settings, Table Prefix,
+ * Secret Keys, WordPress Language, and ABSPATH. You can find more information
+ * by visiting {@link http://codex.wordpress.org/Editing_wp-config.php Editing
+ * wp-config.php} Codex page. You can get the MySQL settings from your web host.
+ *
+ * This file is used by the wp-config.php creation script during the
+ * installation. You don't have to use the web site, you can just copy this file
+ * to "wp-config.php" and fill in the values.
+ *
+ * @package WordPress
+ */
+
+$env_default = array(
+  'name'             => 'default',
+  'hostname'         => 'http://example.com',
+  'debug'            => false,
+  'db_name'          => 'example_prod',
+  'db_user'          => 'example',
+  'db_pass'          => 'password',
+  'db_host'          => 'localhost',
+  'cache'            => true,
+  'password_protect' => false
+);
+
+$env_local = array_merge($env_default, array(
+  'name'             => 'local',
+  'hostname'         => 'http://wordplate.dev',
+  'debug'            => true,
+  'db_name'          => 'wordplate_dev',
+  'db_user'          => 'root',
+  'db_pass'          => '',
+  'cache'            => false
+));
+
+$env_staging = array_merge($env_default, array(
+  'name'             => 'staging',
+  'hostname'         => 'http://staging.example.com',
+  'debug'            => true,
+  'db_name'          => 'wordplate_staging',
+  'cache'            => false,         
+  'password_protect' => true
+));
+
+$production = array_merge($env_default, array(
+  'name'             => 'production',
+  'hostname'         => 'http://example.com'
+));
+
+
+if (file_exists(dirname(__FILE__).'/env_local')) {
+
+  // Local Environment
+  $environment = $env_local;
+
+} elseif(file_exists(dirname(__FILE__).'/env_staging')) {
+
+  // Staging Environment
+  $environment = $env_staging;
+
+} else {
+
+  // Production Environment
+  $environment = $production;
+
+}
+
+/** Environment settings **/
+define('WP_ENV',   $environment['name']);
+define('WP_DEBUG', $environment['debug']);
+define('WP_PASSWORD_PROTECT', $environment['password_protect']);
+
+/** Sets the environment urls **/
+define('WP_HOME',    $environment['hostname']);
+define('WP_SITEURL', $environment['hostname']);
+
+/** Defines whether caching is enabled **/
+define('WP_CACHE', $environment['cache']);
+
+/** Database connection settings **/
+define('DB_NAME',  $environment['db_name']);
+define('DB_USER',  $environment['db_user']);
+define('DB_HOST',  $environment['db_host']);
+define('DB_PASSWORD', $environment['db_pass']);
+
+/** Database Charset to use in creating database tables. */
+define('DB_CHARSET', 'utf8');
+
+/** The Database Collate type. Don't change this if in doubt. */
+define('DB_COLLATE', '');
+
+/** Rename the /wp-content/ dir **/
+define('WP_CONTENT_FOLDERNAME', 'assets'); 
+define('WP_CONTENT_DIR', ABSPATH.WP_CONTENT_FOLDERNAME);
+define('WP_CONTENT_URL', WP_SITEURL.'/'.WP_CONTENT_FOLDERNAME);
+
+/** Allow direct access to the filesystem **/
+define('FS_METHOD', 'direct');
+
+
+/**#@+
+ * Authentication Unique Keys and Salts.
+ *
+ * Change these to different unique phrases!
+ * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
+ * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
+ *
+ * @since 2.6.0
+ */
+define('AUTH_KEY',         'SET_YOUR_KEYS_AND_SALTS');
+define('SECURE_AUTH_KEY',  'SET_YOUR_KEYS_AND_SALTS');
+define('LOGGED_IN_KEY',    'SET_YOUR_KEYS_AND_SALTS');
+define('NONCE_KEY',        'SET_YOUR_KEYS_AND_SALTS');
+define('AUTH_SALT',        'SET_YOUR_KEYS_AND_SALTS');
+define('SECURE_AUTH_SALT', 'SET_YOUR_KEYS_AND_SALTS');
+define('LOGGED_IN_SALT',   'SET_YOUR_KEYS_AND_SALTS');
+define('NONCE_SALT',       'SET_YOUR_KEYS_AND_SALTS');
+
+/**#@-*/
+
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each a unique
+ * prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix  = 'word_';
+
+/**
+* Limits total Post Revisions saved per Post/Page.
+* Change or comment this line out if you would like to increase or remove the limit.
+*/
+define('WP_POST_REVISIONS',  3);
+
+/**
+ * WordPress Localized Language, defaults to English.
+ *
+ * Change this to localize WordPress. A corresponding MO file for the chosen
+ * language must be installed to wp-content/languages. For example, install
+ * de_DE.mo to wp-content/languages and set WPLANG to 'de_DE' to enable German
+ * language support.
+ */
+define('WPLANG', '');
+
+/**
+ * For developers: WordPress debugging mode.
+ *
+ * Change this to true to enable the display of notices during development.
+ * It is strongly recommended that plugin and theme developers use WP_DEBUG
+ * in their development environments.
+ */
+define('WP_DEBUG', false);
+
+/* That's all, stop editing! Happy blogging. */
+
+/** Absolute path to the WordPress directory. */
+if ( !defined('ABSPATH') )
+  define('ABSPATH', dirname(__FILE__) . '/');
+
+/** Sets up WordPress vars and included files. */
+require_once(ABSPATH . 'wp-settings.php');
