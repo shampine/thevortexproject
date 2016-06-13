@@ -25,7 +25,7 @@ add_theme_support( 'post-thumbnails' );
 
 // Removes ul class from wp_nav_menu
 function remove_ul ( $menu ){
-  return preg_replace( array( '#^<ul[^>]*>#', '#</ul>$#' ), '', $menu );
+  return preg_replace(array( '#^<ul[^>]*>#', '#</ul>$#' ), '', $menu);
 }
 add_filter( 'wp_nav_menu', 'remove_ul' );
 
@@ -34,9 +34,17 @@ if($environment['name'] == 'local') {
   function add_browser_sync() {
     echo '
       <script type=\'text/javascript\' id="__bs_script__">//<![CDATA[
-          document.write("<script async src=\'http://HOST:3000/browser-sync/browser-sync-client.2.7.1.js\'><\/script>".replace("HOST", location.hostname));
+          document.write("<script async src=\'http://HOST:3000/browser-sync/browser-sync-client.2.13.0.js\'><\/script>".replace("HOST", location.hostname));
       //]]></script>
     ';
   }
   add_action('wp_footer','add_browser_sync');
 }
+
+// Enable Menus
+function register_menus() {
+  register_nav_menus(array(
+    'main' => 'Main Navigation'
+  ));
+}
+add_action('init', 'register_menus');
