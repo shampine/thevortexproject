@@ -65,7 +65,7 @@ class RegisterAjax
 
       $response = $this->postEndpoint();
 
-      if(!$response->success) {
+      if(empty($response->id)) {
         $this->ajaxResponse('error', $this->errors->error, $this->post, $response);
       } else {
         $this->ajaxResponse('success', $this->errors->success, $this->post, $response);
