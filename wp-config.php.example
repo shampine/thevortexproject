@@ -100,6 +100,11 @@ define('WP_CONTENT_URL', WP_SITEURL.'/'.WP_CONTENT_FOLDERNAME);
 /** Allow direct access to the filesystem **/
 define('FS_METHOD', 'direct');
 
+/** Mailgun **/
+define('MG_DOMAIN', '');
+define('MG_APIKEY', '');
+define('MG_TO', '');
+
 
 /**#@+
  * Authentication Unique Keys and Salts.
