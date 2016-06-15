@@ -121,7 +121,6 @@ class RegisterAjax
       }
     }
 
-    var_dump($this->endpoint);
     $message = [];
     $message['from']       = $data['email'];
     $message['to']         = MG_TO;
