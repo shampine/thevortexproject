@@ -2,3 +2,6 @@
 [submodule "bin"]
 	path = bin
 	url = git@github.com:shampine/server-scripts.git
+[submodule "public/assets/plugins/bootcodes"]
+	path = public/assets/plugins/bootcodes
+	url = git@github.com:shampine/bootcodes.git
