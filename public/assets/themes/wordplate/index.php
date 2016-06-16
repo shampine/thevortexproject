@@ -7,7 +7,7 @@
             the_post(); ?>
 
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 content">
                     <?php the_content(); ?>
                 </div>
             </div><?php
