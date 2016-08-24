@@ -31,6 +31,7 @@ public/assets/backup-db/*
 public/assets/blogs.dir/*
 public/assets/cache/*
 public/assets/cache/supercache/*
+public/assets/plugins/acf-repeater/
 public/assets/upgrade/*
 public/assets/uploads/*
 public/assets/wp-cache-config.php
