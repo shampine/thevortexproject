@@ -22,7 +22,6 @@ $footerHeight: 160px;
 // Navigation
 .navbar {
     position: relative;
-    z-index: 999999;
     border: 0px;
 
     .container {
@@ -30,9 +29,10 @@ $footerHeight: 160px;
     }
 }
 .navbar-default {
-    height: 69px;
+    min-height: 69px;
+    height: auto;
     border-bottom: 1px solid #f1f1f1;
-    background-color: $white;
+    background-color: transparent;
 
     .navbar-nav {
         > .menu-item  {
@@ -40,6 +40,7 @@ $footerHeight: 160px;
             padding-right: 15px;
 
             > a {
+                padding-top: 0;
                 padding-left: 0;
                 padding-right: 0;
                 padding-bottom: 0;
@@ -119,8 +120,35 @@ $footerHeight: 160px;
     }
 }
 
+.row-photo {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.photo {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.modal-header {
+    border-bottom: 0;
+    .close {
+        margin-top: -7px;
+        font-size: 30px;
+    }
+}
+
+.modal-body {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
 .aligncenter {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
 }
 
